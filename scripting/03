@@ -1,0 +1,10 @@
+#! /bin/bash
+
+if [ $# != 1 ]
+then
+	echo "Please put a folder as unique argument"
+else
+	ls -lSh $1 | sed '1d'
+fi
+
+

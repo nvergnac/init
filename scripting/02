@@ -1,5 +1,6 @@
 #! /bin/bash
 
-apt-get update *
-apt-get upgrade *
+echo 'apt-get update >> /var/log/update_script.log ; 
+apt-get upgrade >> /var/log/update_script.log' > ~/update_script.sh;
+echo '0 4 * * 1 root sh ~/update_script.sh' | crontab -e
 

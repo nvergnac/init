@@ -1,10 +1,23 @@
 #! /bin/bash
 
-echo 'if [-e /etc/crontab]\
-	NEW-CRON=`md5sum /etc/crontab`\
-if [-z OLD_CRON || OLD_CRON != NEW-CRON]\
-	mail -s "Crontab has been modified today" root\
-	OLD-CRON=$NEW-CRON' >~/check-crontab.sh
-chmod 777 ~/check-crontab.sh
-echo '0 0 * * * ~/check-crontab.sh' >> /etc/crontab
+if [! -e /etc/crontab]
+then
+	touch /etc/crontab
+fi
+
+touch /etc/crontab_md
+
+echo 'if [! -e /etc/crontab || ! -e /etc/crontab_md]
+	mail -s 'crontab or crontab_md doesn\'t exist anymore' root
+
+else
+	NEW_CRON=`md5sum /etc/crontab`
+	OLD_CRON=`cat /etc/crontab_md`
+	if [$OLD_CRON != $NEW_CRON]
+		mail -s "Crontab has been modified today" root\
+		echo $NEW_CRON > /etc/crontab_md
+fi' >~/check_crontab.sh
+
+chmod 777 ~/check_crontab.sh
+echo '0 0 * * * ~/check_crontab.sh' >> /etc/crontab
 

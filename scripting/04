@@ -1,0 +1,10 @@
+#! /bin/bash
+
+echo 'if [-e /etc/crontab]\
+	NEW-CRON=`md5sum /etc/crontab`\
+if [-z OLD_CRON || OLD_CRON != NEW-CRON]\
+	mail -s "Crontab has been modified today" root\
+	OLD-CRON=$NEW-CRON' >~/check-crontab.sh
+chmod 777 ~/check-crontab.sh
+echo '0 0 * * * ~/check-crontab.sh' >> /etc/crontab
+

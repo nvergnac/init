@@ -1,1 +1,1 @@
-netstat -rn | grep default | grep en1
+netstat -nr | grep default | grep en | awk '{print $2}'

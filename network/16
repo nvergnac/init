@@ -1,2 +1,0 @@
-Je rajoute au fichier /etc/hosts une ligne ou je redirige 46.19.122.85 vers l'ip de intra.42.fr
-sudo chmod 777 /etc/hosts puis je modifie le fichier.

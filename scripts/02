@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo 'apt-get update && apt-get upgrade >> /var/log/update_script.log' > ~/update_script.sh;
+echo 'sudo apt-get update && sudo apt-get upgrade >> /var/log/update_script.log' > ~/update_script.sh;
 chmod 777 ~/update_script.sh;
 echo '0 4 * * 1 root sh ~/update_script.sh' >> /etc/crontab
 

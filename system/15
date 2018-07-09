@@ -1,1 +1,4 @@
+#pour kill la derniere tache en cours d'execution
 sudo kill $!
+#pour kill un programme specifique a partir du nom
+sudo pkill tail
